@@ -1,0 +1,28 @@
+declarations:
+    variables: [w, Y, K, z, c, r]
+    shocks: [eps]
+    parameters: [alpha, beta, delta, gamma, lbar, mu, rho, sigma]
+
+
+equations:
+    - c = w*lbar + (1 + r - delta)*K(-1) - K
+    - c^(-gamma) = beta*((1 + r(+1) - delta)*(c(+1)^-gamma))
+    - Y = exp(z) * (K(-1)^alpha) * (lbar^(1 - alpha))
+    - w = (1 - alpha) * exp(z) * (K(-1)/lbar)^alpha
+    - r = alpha * exp(z) * (lbar/K(-1))^(1 - alpha)
+    - z = rho * z(-1) + (1 - rho)*mu + eps
+
+calibration:
+    parameters:
+        alpha  : 0.35
+        beta   : 0.96
+        delta  : 0.05
+        gamma  : 2
+        lbar    : 1
+        mu     : 0
+        rho    : 0.8145
+        sigma  : 0.0130058759370760
+
+
+    covariances: |
+        [[sigma]]
